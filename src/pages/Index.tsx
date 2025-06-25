@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Calendar, MapPin, Users, Plus, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -10,7 +9,7 @@ import CreateEventModal from '@/components/CreateEventModal';
 import EventDetailsModal from '@/components/EventDetailsModal';
 import RSVPModal from '@/components/RSVPModal';
 
-// Mock data for demonstration
+// Mock data for demonstration with images
 const mockEvents = [
   {
     id: 1,
@@ -21,7 +20,8 @@ const mockEvents = [
     organizer: "Sarah Johnson",
     attendees: 12,
     maxAttendees: 20,
-    category: "Social"
+    category: "Social",
+    imageUrl: "photo-1618160702438-9b02ab6515c9"
   },
   {
     id: 2,
@@ -32,7 +32,8 @@ const mockEvents = [
     organizer: "Mike Chen",
     attendees: 8,
     maxAttendees: 15,
-    category: "Arts"
+    category: "Arts",
+    imageUrl: "photo-1433086966358-54859d0ed716"
   },
   {
     id: 3,
@@ -43,7 +44,8 @@ const mockEvents = [
     organizer: "Alex Rivera",
     attendees: 15,
     maxAttendees: 25,
-    category: "Tech"
+    category: "Tech",
+    imageUrl: "photo-1461749280684-dccba630e2f6"
   },
   {
     id: 4,
@@ -54,7 +56,8 @@ const mockEvents = [
     organizer: "Green Valley Association",
     attendees: 45,
     maxAttendees: 100,
-    category: "Community"
+    category: "Community",
+    imageUrl: "photo-1465146344425-f00d5f5c8f07"
   }
 ];
 

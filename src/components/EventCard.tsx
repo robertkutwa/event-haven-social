@@ -14,6 +14,7 @@ interface Event {
   attendees: number;
   maxAttendees: number;
   category: string;
+  imageUrl?: string;
 }
 
 interface EventCardProps {
@@ -60,22 +61,50 @@ const EventCard = ({ event, onEventClick, onRSVPClick }: EventCardProps) => {
   };
 
   return (
-    <Card className="bg-white/80 backdrop-blur-sm border-purple-100 hover:shadow-xl hover:shadow-purple-200/50 transition-all duration-300 cursor-pointer group">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between mb-2">
-          <Badge className={`${getCategoryColor(event.category)} font-medium`}>
-            {event.category}
-          </Badge>
-          <div className="text-right">
+    <Card className="bg-white/80 backdrop-blur-sm border-purple-100 hover:shadow-xl hover:shadow-purple-200/50 transition-all duration-300 cursor-pointer group overflow-hidden">
+      {/* Event Image */}
+      {event.imageUrl && (
+        <div className="relative h-48 overflow-hidden">
+          <img
+            src={`https://images.unsplash.com/${event.imageUrl}?auto=format&fit=crop&w=400&q=80`}
+            alt={event.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            onClick={() => onEventClick(event)}
+          />
+          <div className="absolute top-3 left-3">
+            <Badge className={`${getCategoryColor(event.category)} font-medium shadow-sm`}>
+              {event.category}
+            </Badge>
+          </div>
+          <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-lg p-2 text-right">
             <div className="text-sm font-semibold text-purple-600">
               {formatDate(event.date_time)}
             </div>
-            <div className="text-xs text-gray-500 flex items-center">
+            <div className="text-xs text-gray-500 flex items-center justify-end">
               <Clock className="w-3 h-3 mr-1" />
               {formatTime(event.date_time)}
             </div>
           </div>
         </div>
+      )}
+
+      <CardHeader className="pb-3">
+        {!event.imageUrl && (
+          <div className="flex items-start justify-between mb-2">
+            <Badge className={`${getCategoryColor(event.category)} font-medium`}>
+              {event.category}
+            </Badge>
+            <div className="text-right">
+              <div className="text-sm font-semibold text-purple-600">
+                {formatDate(event.date_time)}
+              </div>
+              <div className="text-xs text-gray-500 flex items-center">
+                <Clock className="w-3 h-3 mr-1" />
+                {formatTime(event.date_time)}
+              </div>
+            </div>
+          </div>
+        )}
         
         <h3 
           className="text-lg font-bold text-gray-800 group-hover:text-purple-600 transition-colors duration-200 line-clamp-2"
