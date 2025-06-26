@@ -4,6 +4,7 @@ import Index from "./pages/Index";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import NotFound from "./pages/NotFound";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -30,6 +31,10 @@ export default function App() {
         <Route
           path="/"
           element={user ? <Index user={user} /> : <Navigate to="/login" replace />}
+        />
+        <Route
+          path="/profile"
+          element={user ? <Profile user={user} onUpdate={setUser} /> : <Navigate to="/login" replace />}
         />
         <Route path="*" element={<NotFound />} />
       </Routes>
